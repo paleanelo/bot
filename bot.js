@@ -1,6 +1,10 @@
 const { Bot } = require('grammy');
+require('dotenv').config();
 
-const bot = new Bot('7876677867:AAEY565sL6C17g-Oey0J3Rxze0yAzdra22I');
+const bot = new Bot(process.env.BOT_TOKEN);
+
+const port = process.env.PORT || 3000; 
+const debugMode = process.env.DEBUG === 'true'; 
 
 
 bot.command('start', (ctx) => {
@@ -30,4 +34,7 @@ bot.command('joke', async (ctx) => {
 
 bot.start();
 console.log('Бот запущен...');
+
+console.log(`Сервер запущен на порту: ${port}`);
+console.log(`Режим отладки: ${debugMode ? 'Включен' : 'Выключен'}`);
 
